@@ -2,10 +2,10 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
-    <title>My test page</title>
+    <title>Poll List</title>
   </head>
   <body>
-    <p>This is my page</p>
+    <p>Lists of polls available:</p>
 
     {% if latest_question_list %}
     <ul>
@@ -17,5 +17,6 @@
         <p>No polls are available.</p>
     {% endif %}
 
+    <a href="/">Return</a>
   </body>
 </html>
