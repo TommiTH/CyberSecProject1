@@ -27,10 +27,11 @@ class ResultsView(generic.DetailView):
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    print("user is authenticated:" , request.user.is_authenticated)
-    if not request.user.is_authenticated:
-        redirect("/polls")
-        return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+    #-------------- FIX FOR FLAW 1: -----------------------------------------------
+    #if not request.user.is_authenticated:
+    #    redirect("/polls")
+    #    return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+    #------------------------------------------------------------------------------
     try:
         selected_choice = question.choice_set.get(pk=request.POST["choice"])
     except (KeyError, Choice.DoesNotExist):
