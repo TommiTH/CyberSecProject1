@@ -133,3 +133,11 @@ LOGOUT_REDIRECT_URL = "home"
 #FLAW 2: Default session age is 2 weeks. If you forgot to logout on a public computer, people have two weeks to mess around.
 #Below sets it to half an hour:
 #SESSION_COOKIE_AGE = 1800
+
+#FLAW 4: The password hasher django uses is pretty secure, but you can do better. 
+
+#Install the argon2-cffi package. This can be done by running python -m pip install django[argon2], 
+# which is equivalent to python -m pip install argon2-cffi (along with any version requirement from Django’s pyproject.toml).
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.MD5PasswordHasher',
+)
