@@ -23,6 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7)sd=fvl(t=3#xl7vg3vxn#=67vh)99mad)d(chzoq#c@syw=d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# FLAW 3: because debug messages are enabled, attacker can use it to figure out the inner workings of your site.
+# Theres more security misconfiguration related stuff above in the link.
+# DEBUG = False
 DEBUG = True
 
 ALLOWED_HOSTS = []
