@@ -133,9 +133,28 @@ LOGOUT_REDIRECT_URL = "home"
 #FLAW 2: Default session age is 2 weeks. If you forgot to logout on a public computer, people have two weeks to mess around.
 #Below sets it to half an hour:
 #SESSION_COOKIE_AGE = 1800
+#---------------------------------------------------------------------------------------------
 
 #FLAW 4: So I read online my site goes faster if I use a faster password hasher! But now my site is unsafe.
 # Remove below to fix this and go back to the default password hasher django uses.
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
+#----------------------------------------------------------------------------------------------
+
+LOGGING = {
+    "version": 1,  # the dictConfig format version
+    "disable_existing_loggers": False,  # retain the default loggers
+        "handlers": {
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": "general.log",
+        },
+    },
+        "loggers": {
+        "": {
+            "level": "DEBUG",
+            "handlers": ["file"],
+        },
+    },
+}

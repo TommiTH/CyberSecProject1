@@ -7,6 +7,11 @@ from django.shortcuts import redirect
 
 from .models import Choice, Question
 
+import logging
+import datetime
+
+logger = logging.getLogger(__name__)
+
 class IndexView(generic.ListView):
     template_name = "polls/index.html"
     context_object_name = "latest_question_list"
@@ -45,9 +50,15 @@ def vote(request, question_id):
             },
         )
     else:
-        selected_choice.votes = F("votes") + 1
-        selected_choice.save()
+        
         # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
+        selected_choice.votes = F("votes") + 1
+        selected_choice.save()
+        # Flaw 5, no logging. Logging has been setup in the settings file, 
+        # so now in here we can start logging votes and hopefully stop a very possible election fraud.
+        #time = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
+        #logger.warning(str(request.user.username) + " voted. \n  Question_id: " + str(question_id) + " , Selected: " + str(selected_choice) + "\n  " + time)
+        #------------------------------------------------------------------------
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
