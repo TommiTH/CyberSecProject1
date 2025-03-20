@@ -134,10 +134,8 @@ LOGOUT_REDIRECT_URL = "home"
 #Below sets it to half an hour:
 #SESSION_COOKIE_AGE = 1800
 
-#FLAW 4: The password hasher django uses is pretty secure, but you can do better. 
-
-#Install the argon2-cffi package. This can be done by running python -m pip install django[argon2], 
-# which is equivalent to python -m pip install argon2-cffi (along with any version requirement from Django’s pyproject.toml).
+#FLAW 4: So I read online my site goes faster if I use a faster password hasher! But now my site is unsafe.
+# Remove below to fix this and go back to the default password hasher django uses.
 PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
 )
